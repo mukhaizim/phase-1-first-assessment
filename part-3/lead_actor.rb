@@ -1,18 +1,9 @@
-class LeadActor
-  attr_reader :award_nominations, :awards, :name, :roles
+class LeadActor < Fancypeople
+  include Awardable
+  attr_reader :roles
 
   def initialize(args = {})
-    @name = args[:name]
+   super
     @roles = args.fetch(:roles, [])
-    @award_nominations = args.fetch(:award_nominations, [])
-    @awards = args.fetch(:awards, [])
-  end
-
-  def receive_award_nomination(award)
-    @award_nominations << award
-  end
-
-  def receive_award(award)
-    @awards << award
   end
 end

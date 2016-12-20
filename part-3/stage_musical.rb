@@ -1,33 +1,11 @@
-class StageMusical
-  attr_reader :title, :director, :composer, :cast, :awards, :award_nominations, :tickets
+class StageMusical < Production
+  include Ticketable
+  include Awardable
+  attr_reader :composer
 
   def initialize(args = {})
-    @title = args[:title]
-    @director = args[:director]
+   super
     @composer = args[:composer]
-    @cast = args.fetch(:cast, [])
-    @awards = args.fetch(:awards, [])
-    @award_nominations = args.fetch(:award_nominations, [])
-    @tickets = args.fetch(:tickets, [])
   end
 
-  def receive_award_nomination(award)
-    @award_nominations << award
-  end
-
-  def receive_award(award)
-    @awards << award
-  end
-
-  def take_ticket
-    @tickets.pop
-  end
-
-  def tickets_left
-    @tickets.length
-  end
-
-  def sold_out?
-    @tickets.empty?
-  end
 end
