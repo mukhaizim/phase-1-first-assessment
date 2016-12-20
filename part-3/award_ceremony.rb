@@ -1,4 +1,5 @@
 class AwardCeremony
+  include Ticketable
   attr_reader :name, :event_date, :tickets
 
   def initialize(args = {})
@@ -7,15 +8,4 @@ class AwardCeremony
     @tickets = args.fetch(:tickets, [])
   end
 
-  def take_ticket
-    @tickets.pop
-  end
-
-  def tickets_left
-    @tickets.length
-  end
-
-  def sold_out?
-    @tickets.empty?
-  end
 end
